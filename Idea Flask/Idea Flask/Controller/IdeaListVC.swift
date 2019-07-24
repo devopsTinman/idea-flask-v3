@@ -63,6 +63,14 @@ class IdeaListVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         refreshControl.endRefreshing()
     }
     
+    @IBAction func unwindFromAddIdeaVC(_ sender: UIStoryboardSegue) {
+        if sender.source is AddIdeaVC {
+            if let senderVC = sender.source as? AddIdeaVC {
+                allIdeas.append(senderVC.newIdea!)
+            }
+        }
+    }
+    
 }
 
 //MARK: - Search bar methods

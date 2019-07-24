@@ -12,13 +12,12 @@ import UIKit
 class DataService {
     
     static let instance = DataService()
-
+    //let appDelegate = UIApplication.shared.delegate as? AppDelegate
+    let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     func getIdeaCount() -> Int {
         var recordCount = 0
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return recordCount
-        }
-        let managedContext = appDelegate.persistentContainer.viewContext
+
         let fetchRequest: NSFetchRequest<Ideas> = Ideas.fetchRequest()
         recordCount = try! managedContext.count(for: fetchRequest)
         return recordCount
@@ -26,8 +25,7 @@ class DataService {
     
     func getAllIdeas() -> [Idea] {
         var ideaList = [Idea]()
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return ideaList }
-        let managedContext = appDelegate.persistentContainer.viewContext
+
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Ideas")
         var currentIdea: Idea
         var ideaTag: String = ""
@@ -56,8 +54,7 @@ class DataService {
     }
     
     func saveIdea(idea: Idea) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDelegate.persistentContainer.viewContext
+
         let ideaEntity = NSEntityDescription.entity(forEntityName: "Ideas", in: managedContext)!
         let newIdea = NSManagedObject(entity: ideaEntity, insertInto: managedContext)
         newIdea.setValue(idea.ideaCategory, forKey: "ideaCategory")
@@ -77,8 +74,7 @@ class DataService {
     
     
     func deleteIdea(idea: Idea) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDelegate.persistentContainer.viewContext
+
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Ideas")
         fetchRequest.predicate = NSPredicate(format: "ideaID=%@", idea.ideaID)
         
@@ -104,8 +100,7 @@ class DataService {
     
     func searchIdeas(searchText: String)-> [Idea] {
         var ideaList = [Idea]()
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return ideaList }
-        let managedContext = appDelegate.persistentContainer.viewContext
+
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Ideas")
         fetchRequest.predicate = NSPredicate(format: "ideaNotes CONTAINS[cd] %@", searchText)
       

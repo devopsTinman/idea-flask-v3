@@ -180,7 +180,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="If9-oY-yf6">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="fdD-pi-uhP" kind="show" id="qrP-hR-gD6"/>
+                                <segue destination="fdD-pi-uhP" kind="showDetail" id="qrP-hR-gD6"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -225,6 +225,7 @@
                                         </state>
                                         <connections>
                                             <action selector="saveBtnPressed:" destination="fdD-pi-uhP" eventType="touchUpInside" id="AaD-aR-763"/>
+                                            <segue destination="1cK-LL-BmG" kind="unwind" unwindAction="unwindFromAddIdeaVC:" id="dol-jI-bfA"/>
                                         </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Short Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f5I-m6-jiF">
@@ -236,6 +237,22 @@
                                         <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="20"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q8w-Do-2IH">
+                                        <rect key="frame" x="30" y="463" width="354" height="63"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="63" id="b7Z-xs-r8I"/>
+                                            <constraint firstAttribute="height" constant="63" id="v5f-Ns-9y4"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="20"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" red="0.098039215690000001" green="0.59999999999999998" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancelBtnTapped:" destination="fdD-pi-uhP" eventType="touchUpInside" id="CsV-19-Io0"/>
+                                            <action selector="saveBtnPressed:" destination="fdD-pi-uhP" eventType="touchUpInside" id="wXz-Je-ZUQ"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.098039215690000001" green="0.59999999999999998" blue="0.60784313729999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -249,6 +266,9 @@
                                     <constraint firstItem="3Ve-gG-wKg" firstAttribute="leading" secondItem="Bmm-Oo-uuP" secondAttribute="leading" constant="30" id="e8c-KF-heC"/>
                                     <constraint firstItem="SAI-My-dal" firstAttribute="top" secondItem="f5I-m6-jiF" secondAttribute="bottom" constant="20" id="eZh-2M-GNt"/>
                                     <constraint firstAttribute="trailing" secondItem="3Ve-gG-wKg" secondAttribute="trailing" constant="30" id="hYg-4B-Rvm"/>
+                                    <constraint firstItem="q8w-Do-2IH" firstAttribute="leading" secondItem="Bmm-Oo-uuP" secondAttribute="leading" constant="30" id="nmX-qC-vLI"/>
+                                    <constraint firstAttribute="trailing" secondItem="q8w-Do-2IH" secondAttribute="trailing" constant="30" id="sQP-2m-uN6"/>
+                                    <constraint firstItem="q8w-Do-2IH" firstAttribute="top" secondItem="3Ve-gG-wKg" secondAttribute="bottom" constant="20" id="xk1-BM-j9b"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -267,6 +287,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kkU-td-eep" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="1cK-LL-BmG" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2756.521739130435" y="20.758928571428569"/>
         </scene>

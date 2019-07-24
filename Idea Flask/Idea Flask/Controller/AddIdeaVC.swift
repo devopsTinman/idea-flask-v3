@@ -9,16 +9,22 @@
 import UIKit
 
 class AddIdeaVC: UIViewController {
+    
+    var newIdea: Idea?
+    
     @IBOutlet weak var txtIdeatag: UITextField!
     @IBOutlet weak var txtIdeaText: UITextView!
     
     @IBAction func saveBtnPressed(_ sender: Any) {
         
-        let newIdea = Idea(ideaCategory: "Apps", ideaNotes: txtIdeaText.text, ideaTagline: txtIdeatag.text!, user: "me", ideaID: UUID().uuidString, dateAdded: Date())
-        DataService.instance.saveIdea(idea: newIdea)
-        dismiss(animated: true, completion: nil)
+        newIdea = Idea(ideaCategory: "Apps", ideaNotes: txtIdeaText.text, ideaTagline: txtIdeatag.text!, user: "me", ideaID: UUID().uuidString, dateAdded: Date())
+        DataService.instance.saveIdea(idea: newIdea!)
+        //dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func cancelBtnTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     
     
     override func viewDidLoad() {
